@@ -14,10 +14,12 @@ class View(ft.UserControl):
         # graphical elements
         self._title = None
         self.txt_name = None
-        self.btn_hello = None
         self.txt_result = None
         self.txt_container = None
         self._ddGenre = None
+        self._ddArtist = None
+        self._btnCreaGrafo = None
+        self._btnTrovaCammino = None
 
     def load_interface(self):
         # title
@@ -25,8 +27,13 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
 
-        self._ddGenre = ft.Dropdown(label="Genere", width=250)
-        self._controller.fillDDGenre(self._ddGenre)
+        self._ddGenre = ft.Dropdown(label="Genere", width=250,
+                                    on_change=self._controller.handleChangeGeneri)
+        self._ddArtist = ft.Dropdown(label="Artist", width=250,
+                                     disabled=True)
+        self._controller.fillDDGenre()
+        # self._controller.fillDDArtist(self._ddArtist)
+
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea Grafo",
                                                on_click=self._controller.handleCreaGrafo, width=250)
 
@@ -34,10 +41,10 @@ class View(ft.UserControl):
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
 
-        self._ddArtist = ft.Dropdown(label="Artist", width=250)
-        self._btnCreaGrafo = ft.ElevatedButton(text="Trova Cammino", on_click=self._controller.handleCammino, width=250)
 
-        row2 = ft.Row([self._ddArtist, self._btnCreaGrafo],
+        self._btnTrovaCammino = ft.ElevatedButton(text="Trova Cammino", on_click=self._controller.handleCammino, width=250)
+
+        row2 = ft.Row([self._ddArtist, self._btnTrovaCammino],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row2)
 
