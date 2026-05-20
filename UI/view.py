@@ -17,6 +17,7 @@ class View(ft.UserControl):
         self.btn_hello = None
         self.txt_result = None
         self.txt_container = None
+        self._ddGenre = None
 
     def load_interface(self):
         # title
@@ -25,7 +26,7 @@ class View(ft.UserControl):
 
 
         self._ddGenre = ft.Dropdown(label="Genere", width=250)
-        self._controller.fillDDGenre()
+        self._controller.fillDDGenre(self._ddGenre)
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea Grafo",
                                                on_click=self._controller.handleCreaGrafo, width=250)
 
